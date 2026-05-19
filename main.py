@@ -3,8 +3,8 @@ import os
 
 from boom import config
 from boom.get_key import get_key
-from boom.types import Field, Flag, HiddenCell, Loss, Mine, Win
 from boom.mapgen import gen_map
+from boom.types import Field, Flag, HiddenCell, Loss, Mine, Win
 
 logo = r"""________      _______      _______    ___     ___
 |       \    /  ___  \    /  ___  \   |  \   /  |
@@ -51,7 +51,12 @@ def be_out(geomap: list[list]):
         return ""
 
     info_space = " " * 5
-    print("┌" + "┬".join(["─" * 3] * config.FIELD_WIDTH) + "┐" + dynamic_info_row())
+    print(
+        "┌"
+        + "┬".join(["─" * 3] * config.FIELD_WIDTH)
+        + "┐"
+        + dynamic_info_row()
+    )
     for r, row in enumerate(geomap):
         out = ""
         for jr, j in enumerate(row):
@@ -76,9 +81,19 @@ def be_out(geomap: list[list]):
                 out += " " + colors[j] + " "
             out += "\033[0m"
         print(out + "│" + dynamic_info_row())
-        if r != config.FIELD_HEIGHT-1:
-            print("├" + "┼".join(["─" * 3] * config.FIELD_WIDTH) + "┤" + dynamic_info_row())
-    print("└" + "┴".join(["─" * 3] * config.FIELD_WIDTH) + "┘" + dynamic_info_row())
+        if r != config.FIELD_HEIGHT - 1:
+            print(
+                "├"
+                + "┼".join(["─" * 3] * config.FIELD_WIDTH)
+                + "┤"
+                + dynamic_info_row()
+            )
+    print(
+        "└"
+        + "┴".join(["─" * 3] * config.FIELD_WIDTH)
+        + "┘"
+        + dynamic_info_row()
+    )
 
 
 def turn(y, x, is_flag):
@@ -103,6 +118,7 @@ def turn(y, x, is_flag):
 selected_y = 0
 selected_x = 0
 
+
 def walk():
     global selected_x, selected_y
     while True:
@@ -114,18 +130,29 @@ def walk():
         elif key in ["a", "h", "ф", "\x1b[D"]:
             selected_x = max(selected_x - 1, 0)
         elif key in ["s", "j", "ы", "\x1b[B"]:
-            selected_y = min(selected_y + 1, config.FIELD_HEIGHT-1)
+            selected_y = min(selected_y + 1, config.FIELD_HEIGHT - 1)
         elif key in ["d", "l", "в", "\x1b[C"]:
-            selected_x = min(selected_x + 1, config.FIELD_WIDTH-1)
+            selected_x = min(selected_x + 1, config.FIELD_WIDTH - 1)
         elif key in ["q", "й"]:
             exit()
         elif key in ["o", "щ", "ў", "\n", "\r"]:
             return
-    
-        if old_x != selected_x or old_y != selected_y:
-            be_out([[HiddenCell() for _ in range(config.FIELD_WIDTH)] for _ in range(config.FIELD_HEIGHT)])
 
-be_out([[HiddenCell() for _ in range(config.FIELD_WIDTH)] for _ in range(config.FIELD_HEIGHT)])
+        if old_x != selected_x or old_y != selected_y:
+            be_out(
+                [
+                    [HiddenCell() for _ in range(config.FIELD_WIDTH)]
+                    for _ in range(config.FIELD_HEIGHT)
+                ]
+            )
+
+
+be_out(
+    [
+        [HiddenCell() for _ in range(config.FIELD_WIDTH)]
+        for _ in range(config.FIELD_HEIGHT)
+    ]
+)
 walk()
 
 mines = gen_map((selected_y, selected_x))
@@ -144,9 +171,9 @@ while True:
     elif key in ["a", "h", "ф", "\x1b[D"]:
         selected_x = max(selected_x - 1, 0)
     elif key in ["s", "j", "ы", "\x1b[B"]:
-        selected_y = min(selected_y + 1, config.FIELD_HEIGHT-1)
+        selected_y = min(selected_y + 1, config.FIELD_HEIGHT - 1)
     elif key in ["d", "l", "в", "\x1b[C"]:
-        selected_x = min(selected_x + 1, config.FIELD_WIDTH-1)
+        selected_x = min(selected_x + 1, config.FIELD_WIDTH - 1)
     elif key in ["q", "й"]:
         exit()
     elif key in ["o", "щ", "ў", "\n", "\r"]:

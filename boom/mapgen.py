@@ -1,9 +1,13 @@
-from . import config, types
-from typing import cast
 from random import randint
+from typing import cast
+
+from . import config, types
+
 
 def find_bombs(equations: list[tuple[tuple[tuple[int, int], ...], int]]):
-    variables = sorted({var for vars_list, _ in equations for var in vars_list})
+    variables = sorted(
+        {var for vars_list, _ in equations for var in vars_list}
+    )
 
     assignment = {}
     fixed_values = None
@@ -60,7 +64,10 @@ def find_bombs(equations: list[tuple[tuple[tuple[int, int], ...], int]]):
     if solutions_count == 0:
         return {}
     fixed_values = cast(dict, fixed_values)
-    return {var: value for var, value in fixed_values.items() if value is not None}
+    return {
+        var: value for var, value in fixed_values.items() if value is not None
+    }
+
 
 def test_map(field: types.Field):
     result = None
@@ -109,14 +116,17 @@ def gen_map(first: tuple[int, int]):
     while True:
         mines = []
         while len(mines) < config.MINES_COUNT:
-            rand = (randint(0, config.FIELD_HEIGHT-1), randint(0, config.FIELD_WIDTH-1))
+            rand = (
+                randint(0, config.FIELD_HEIGHT - 1),
+                randint(0, config.FIELD_WIDTH - 1),
+            )
             if rand != first:
                 mines.append(rand)
-        
+
         field = types.Field(mines, config.FIELD_HEIGHT, config.FIELD_WIDTH)
-        
+
         field.open_cell(*first)
-        
+
         if isinstance(test_map(field), types.Win):
             break
     return mines
