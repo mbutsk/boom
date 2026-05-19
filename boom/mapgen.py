@@ -14,9 +14,6 @@ def find_bombs(equations: list[tuple[tuple[tuple[int, int], ...], int]]):
     solutions_count = 0
 
     def is_possible():
-        """
-        Проверка, можно ли ещё достроить текущее частичное решение.
-        """
         for vars_list, rhs in equations:
             current_sum = 0
             unknown_count = 0
