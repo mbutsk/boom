@@ -26,12 +26,8 @@ def find_bombs(equations: list[tuple[tuple[tuple[int, int], ...], int]]):
                     current_sum += assignment[var]
                 else:
                     unknown_count += 1
-
-            # Уже перебрали
             if current_sum > rhs:
                 return False
-
-            # Даже если все неизвестные = 1, до rhs не дотягиваем
             if current_sum + unknown_count < rhs:
                 return False
 
