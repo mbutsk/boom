@@ -50,3 +50,7 @@ python main.py
 
 Дызайн і прынцып кіравання былі скрадзеныя ў
 [`margual56/minesweeper-cli`](https://github.com/margual56/minesweeper-cli). Дзякуй
+
+### Паст-пастскрыптум
+
+Зразумелі??? Boom Doom смешна што аж гамон
