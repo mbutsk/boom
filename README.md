@@ -20,8 +20,11 @@ python main.py
 ### Правілы
 
 Рухацца: ↑, ←, ↓, → / H, J, K, L / W, A, S, D
+
 Адкрыць ячэйку: O / Enter
+
 Паставіць / зняць сцяг: F / Прабел
+
 Выйсці: Q
 
 Правілы класічнага Сапёра можаце даведацца [тут](https://minesweepergame.com/strategy/how-to-play-minesweeper.php),
