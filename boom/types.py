@@ -96,7 +96,9 @@ class Field:
     def is_win(self):
         for y in range(self.height):
             for x in range(self.width):
-                if self.minemap[y][x] == 0 and not isinstance(self.geomap[y][x], int):
+                if self.minemap[y][x] == 0 and not isinstance(
+                    self.geomap[y][x], int
+                ):
                     return False
         return True
 
